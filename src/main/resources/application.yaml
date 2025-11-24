@@ -13,6 +13,5 @@ spring:
       dialect: org.hibernate.dialect.MySQL8Dialect # Asegúrate que la dialecto coincida con tu versión de MySQL
     show-sql: true # Opcional: muestra las sentencias SQL ejecutadas
 
-
 server:
   port: 9191

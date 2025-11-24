@@ -1,10 +1,14 @@
 package com.example.cursos.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -22,8 +26,6 @@ public class Curso {
     @Column(nullable = false)
     private String descripcion;
 
-    /*
-    @Column(nullable = false)
-    private String categoria;
-    */
+    @ManyToMany(mappedBy = "cursos")
+    private List<Estudiante> estudiante = new ArrayList<>();
 }

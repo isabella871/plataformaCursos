@@ -48,7 +48,6 @@ public class CursoService {
 
             responseDTO.setTitulo(curso.getTitulo());
             responseDTO.setDescripcion(curso.getDescripcion());
-
             response.add(responseDTO);
         }
         return response;
