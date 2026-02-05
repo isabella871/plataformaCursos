@@ -14,4 +14,4 @@ spring:
     show-sql: true # Opcional: muestra las sentencias SQL ejecutadas
 
 server:
-  port: 9191
+  port: 8080

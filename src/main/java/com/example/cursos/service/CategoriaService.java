@@ -25,10 +25,12 @@ public class CategoriaService {
         Categoria categoria = new Categoria();
         CategoriaResponseDTO response = new CategoriaResponseDTO();
 
+        
         categoria.setNombre(categoriaRequestDTO.getNombre());
         
         categoriaRepository.save(categoria);
         response.setNombre(categoria.getNombre());
+        response.setId(categoria.getId());
         return response;
     }
 
@@ -39,6 +41,7 @@ public class CategoriaService {
 
         for (Categoria categoria : categorias) {
             CategoriaResponseDTO dto = new CategoriaResponseDTO();
+            dto.setId(categoria.getId());
             dto.setNombre(categoria.getNombre());
             response.add(dto);
         }
@@ -53,6 +56,7 @@ public class CategoriaService {
             Categoria categoria = encontrada.get();
             CategoriaResponseDTO response = new CategoriaResponseDTO();
 
+            response.setId(categoria.getId());
             response.setNombre(categoria.getNombre());
             return Optional.of(response);
         }
@@ -79,6 +83,7 @@ public class CategoriaService {
             Categoria actualizada = categoriaRepository.save(categoria);
 
             CategoriaResponseDTO response = new CategoriaResponseDTO();
+            response.setId(categoria.getId());
             response.setNombre(actualizada.getNombre());
 
             return Optional.of(response);

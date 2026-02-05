@@ -38,9 +38,10 @@ public class CursoService {
         cursoRepository.save(curso);
 
         CursoResponseDTO response = new CursoResponseDTO();
+        response.setId(curso.getId());
         response.setTitulo(curso.getTitulo());
         response.setDescripcion(curso.getDescripcion());
-        response.setCategoria(categoria.getNombre());
+        response.setCategoria(curso.getCategoria().getNombre());
 
         return response;
     }
@@ -54,7 +55,9 @@ public class CursoService {
             CursoResponseDTO responseDTO = new CursoResponseDTO();
 
             responseDTO.setTitulo(curso.getTitulo());
+            responseDTO.setId(curso.getId());
             responseDTO.setDescripcion(curso.getDescripcion());
+            responseDTO.setCategoria(curso.getCategoria().getNombre());
             response.add(responseDTO);
         }
         return response;
@@ -68,8 +71,10 @@ public class CursoService {
             Curso curso = cursoEncontrado.get();
             CursoResponseDTO response = new CursoResponseDTO();
 
+            response.setId(curso.getId());
             response.setTitulo(curso.getTitulo());
             response.setDescripcion(curso.getDescripcion());
+            response.setCategoria(curso.getCategoria().getNombre());
 
             return Optional.of(response);
         }else{
@@ -98,8 +103,10 @@ public class CursoService {
             Curso cursoActualizado = cursoRepository.save(curso);
 
             CursoResponseDTO response = new CursoResponseDTO();
+            response.setId(cursoActualizado.getId());
             response.setTitulo(cursoActualizado.getTitulo());
             response.setDescripcion(cursoActualizado.getDescripcion());
+            response.setCategoria(curso.getCategoria().getNombre());
             return Optional.of(response);
         }else{
             return Optional.empty();

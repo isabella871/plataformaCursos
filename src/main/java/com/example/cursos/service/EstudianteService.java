@@ -30,6 +30,7 @@ public class EstudianteService {
 
         estudianteRepository.save(estudiante);
 
+        response.setId(estudiante.getId());
         response.setNombre(estudiante.getNombre());
         response.setEmail(estudiante.getEmail());
         return response;
@@ -42,6 +43,7 @@ public class EstudianteService {
 
         for (Estudiante estudiante : estudiantes) {
             EstudianteResponseDTO dto = new EstudianteResponseDTO();
+            dto.setId(estudiante.getId());
             dto.setNombre(estudiante.getNombre());
             dto.setEmail(estudiante.getEmail());
             response.add(dto);
@@ -57,6 +59,7 @@ public class EstudianteService {
             Estudiante estudiante = encontrado.get();
             EstudianteResponseDTO response = new EstudianteResponseDTO();
 
+            response.setId(estudiante.getId());
             response.setNombre(estudiante.getNombre());
             response.setEmail(estudiante.getEmail());
             return Optional.of(response);
@@ -85,6 +88,7 @@ public class EstudianteService {
             Estudiante actualizado = estudianteRepository.save(estudiante);
 
             EstudianteResponseDTO response = new EstudianteResponseDTO();
+            response.setId(actualizado.getId());
             response.setNombre(actualizado.getNombre());
             response.setEmail(actualizado.getEmail());
             return Optional.of(response);

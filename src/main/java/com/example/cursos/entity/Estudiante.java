@@ -10,10 +10,10 @@ import java.util.Set;
 @Data
 @Table(name = "estudiante")
 public class Estudiante {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @Column(nullable = false)
     private String nombre;
 

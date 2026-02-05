@@ -32,5 +32,5 @@ public class Curso {
         name = "curso_estudiante",
         joinColumns = @JoinColumn(name = "id_curso"),
         inverseJoinColumns = @JoinColumn(name = "id_estudiante"))
-    private Set<Estudiante> estudiantes = new HashSet<>(); // ← plural + Set
+    private Set<Estudiante> estudiantes = new HashSet<>();
 }
