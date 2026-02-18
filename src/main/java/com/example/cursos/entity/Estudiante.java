@@ -6,6 +6,8 @@ import lombok.Data;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Data
 @Table(name = "estudiante")
@@ -22,5 +24,6 @@ public class Estudiante {
 
     // LADO INVERSO: apunta al campo "estudiantes" de la clase Curso
     @ManyToMany(mappedBy = "estudiantes")
+    @JsonIgnore
     private Set<Curso> cursos = new HashSet<>();
 }

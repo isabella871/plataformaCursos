@@ -92,24 +92,41 @@ public class CursoService {
     }
 
     @Transactional
-    public Optional<CursoResponseDTO> actualizarCurso(Long id, CursoRequestDTO cursoRequestDTO){
-        Optional<Curso> cursoEncontrado = cursoRepository.findById(id);
+    public Optional<CursoResponseDTO> actualizarCurso(Long id, CursoRequestDTO dto) {
 
-        if (cursoEncontrado.isPresent()) {
-            Curso curso = cursoEncontrado.get();
+    Optional<Curso> cursoOpt = cursoRepository.findById(id);
 
-            curso.setTitulo(cursoRequestDTO.getTitulo());
-            curso.setDescripcion(cursoRequestDTO.getDescripcion());
-            Curso cursoActualizado = cursoRepository.save(curso);
-
-            CursoResponseDTO response = new CursoResponseDTO();
-            response.setId(cursoActualizado.getId());
-            response.setTitulo(cursoActualizado.getTitulo());
-            response.setDescripcion(cursoActualizado.getDescripcion());
-            response.setCategoria(curso.getCategoria().getNombre());
-            return Optional.of(response);
-        }else{
-            return Optional.empty();
-        }
+    if (cursoOpt.isEmpty()) {
+        return Optional.empty();
     }
+
+    Curso curso = cursoOpt.get();
+
+    
+    if (dto.getTitulo() != null && !dto.getTitulo().isBlank()) {
+        curso.setTitulo(dto.getTitulo());
+    }
+
+    if (dto.getDescripcion() != null && !dto.getDescripcion().isBlank()) {
+        curso.setDescripcion(dto.getDescripcion());
+    }
+
+    if (dto.getIdCategoria() != null) {
+        Categoria categoria = categoriaRepository.findById(dto.getIdCategoria())
+            .orElseThrow(() -> new RuntimeException("La categoría no existe"));
+
+        curso.setCategoria(categoria);
+    }
+
+    Curso cursoActualizado = cursoRepository.save(curso);
+
+    CursoResponseDTO response = new CursoResponseDTO();
+    response.setId(cursoActualizado.getId());
+    response.setTitulo(cursoActualizado.getTitulo());
+    response.setDescripcion(cursoActualizado.getDescripcion());
+    response.setCategoria(cursoActualizado.getCategoria().getNombre());
+
+    return Optional.of(response);
+    }
+
 }

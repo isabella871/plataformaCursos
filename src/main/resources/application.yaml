@@ -1,17 +1,22 @@
+
 spring:
   application:
     name: cursos
 
-  datasource: # Configuración de la base de datos
-    url: jdbc:mysql://localhost:3306/cursosOnline # Url de la base de datos
-    username: root # Usuario de la conexión a la base de datos
-    password: # Contraseña de la conexión de la base de datos (vacía porque en mi caso no tengo)
-    driver-class-name: com.mysql.cj.jdbc.Driver # Driver de mysql
+  datasource:
+    url: jdbc:mysql://mysql_db:3306/cursosOnline
+    username: root
+    password: 1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
     hibernate:
-      dialect: org.hibernate.dialect.MySQL8Dialect # Asegúrate que la dialecto coincida con tu versión de MySQL
-    show-sql: true # Opcional: muestra las sentencias SQL ejecutadas
+      ddl-auto: update
+      dialect: org.hibernate.dialect.MySQL8Dialect
+    show-sql: true
 
 server:
   port: 8080
+
+
+
